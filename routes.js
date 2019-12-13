@@ -3,6 +3,9 @@ const api = express();
 const mysql = require("./database");
 const Produto = require('./src/models/Produto');
 const CreateProductRequest = require('./src/request/create-products');
+const cors = require('cors');
+
+api.use(cors());
 
 api.get('/', function (req, res) {
     res.send("Funcionando");
@@ -79,5 +82,7 @@ api.delete('/deletar/:id', function (req, res) {
 });
 
 module.exports = (app) => {
+    app.use(cors());
+
     app.use('/api', api);
 }
