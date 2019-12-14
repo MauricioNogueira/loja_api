@@ -74,10 +74,18 @@ api.delete('/deletar/:id', function (req, res) {
 
     produto.deletar(req.params.id)
     .then(result => {
-        res.status(200).json(result);
+        console.log(result);
     })
     .catch(error => {
         res.status(500).json(error);
+    });
+
+    produto.listar().then((result) => {
+        res.status(200).json(result);
+    })
+    .catch((error) => {
+        console.log(error);
+        res.status(500).json([]);
     });
 });
 
